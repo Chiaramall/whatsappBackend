@@ -33,7 +33,9 @@ app.use('/api/message', messageRoute)
 //deployment
 
 
-
+app.get('/', (req, res) => {
+    res.sendStatus(200)
+})
  const server= app.listen(PORT, ()=>console.log(`server in ascolto su porta ${PORT}`))
 const io=require('socket.io')(server, {
     pingTimeout: 60000,
