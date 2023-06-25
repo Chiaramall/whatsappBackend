@@ -8,7 +8,7 @@ const chatRoute=require('./routes/chatRoute')
 const friendRoute=require('./routes/friendRoute')
 const messageRoute=require('./routes/messageRoute')
 const protect=require('./config/protect')
-const {join, resolve} = require("path");
+
 
 dotenv.config();
 app.use(express.json())
@@ -31,18 +31,8 @@ app.use('/api/friends', friendRoute)
 app.use('/api/message', messageRoute)
 
 //deployment
-const __dirname1=resolve();
-if(process.env.NODE_ENV==='production'){
-    app.use(express.static(join(__dirname1,'../frontend/build')));
-    app.get('*', (req,res)=>{
-        res.sendFile(resolve(__dirname1, '../frontend', 'build', 'index.html'))
-    })
-}else{
-    app.get('/', (req,res)=>{
-        res.send("api is running successfully")
-    })
-}
-//deployment
+
+
 
  const server= app.listen(PORT, ()=>console.log(`server in ascolto su porta ${PORT}`))
 const io=require('socket.io')(server, {
